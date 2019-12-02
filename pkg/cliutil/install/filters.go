@@ -9,7 +9,7 @@ import (
 	"github.com/solo-io/go-utils/errors"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	"k8s.io/helm/pkg/manifest"
+	"helm.sh/helm/v3/pkg/manifest"
 )
 
 // This type represents a function that can be used to filter and transform a list of manifests.

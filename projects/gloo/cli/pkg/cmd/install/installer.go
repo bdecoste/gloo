@@ -16,10 +16,10 @@ import (
 	"github.com/solo-io/go-utils/contextutils"
 	"github.com/solo-io/go-utils/kubeutils"
 	"go.uber.org/zap"
-	"k8s.io/helm/pkg/chartutil"
-	"k8s.io/helm/pkg/manifest"
-	"k8s.io/helm/pkg/proto/hapi/chart"
-	"k8s.io/helm/pkg/renderutil"
+	"helm.sh/helm/v3/pkg/chartutil"
+	"helm.sh/helm/v3/pkg/manifest"
+	"helm.sh/helm/v3/pkg/proto/hapi/chart"
+	"helm.sh/helm/v3/pkg/renderutil"
 )
 
 type GlooKubeInstallClient interface {

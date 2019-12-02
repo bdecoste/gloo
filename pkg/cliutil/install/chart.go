@@ -10,11 +10,9 @@ import (
 
 	"github.com/solo-io/gloo/pkg/cliutil"
 	"github.com/solo-io/go-utils/errors"
-	"k8s.io/helm/pkg/chartutil"
-	"k8s.io/helm/pkg/manifest"
-	"k8s.io/helm/pkg/proto/hapi/chart"
-	"k8s.io/helm/pkg/renderutil"
-	"k8s.io/helm/pkg/tiller"
+	"helm.sh/helm/v3/pkg/chart"
+	"helm.sh/helm/v3/pkg/chart/loader"
+	"helm.sh/helm/v3/pkg/chartutil"
 )
 
 const (
@@ -35,7 +33,7 @@ func GetHelmArchive(chartArchiveUri string) (*chart.Chart, error) {
 	defer chartFile.Close()
 
 	// Check chart requirements to make sure all dependencies are present in /charts
-	helmChart, err := chartutil.LoadArchive(chartFile)
+	helmChart, err := loader.LoadArchive(chartFile)
 	if err != nil {
 		return nil, errors.Wrapf(err, "loading chart archive")
 	}
@@ -52,11 +50,11 @@ func GetValuesFromFileIncludingExtra(helmChart *chart.Chart, fileName string, us
 	if fileName != "" {
 		var found bool
 		for _, valueFile := range helmChart.Files {
-			if valueFile.TypeUrl == fileName {
-				rawAdditionalValues = string(valueFile.Value)
-				found = true
-				break
-			}
+			// if valueFile.TypeUrl == fileName {
+			// 	rawAdditionalValues = string(valueFile.Value)
+			// 	found = true
+			// 	break
+			// }
 		}
 		if !found {
 			return nil, errors.Errorf("could not find value file [%s] in Helm chart archive", fileName)
