@@ -133,6 +133,7 @@ func (c *edsWatcher) watch(writeNamespace string, opts clients.WatchOpts) (<-cha
 		})
 		if err != nil {
 			errs <- err
+                        logger.Errorf("DECOSTE: error updating resource list %v", err)
 			return
 		}
 		select {
